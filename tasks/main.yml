@@ -1,0 +1,58 @@
+---
+- name: resolve platform specific vars
+  include_vars: '{{ item }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
+      skip: true
+      paths:
+        - '{{ role_path }}/vars'
+- name: check for install in {{ cmctl_install_exe }}
+  become: true
+  stat:
+    path: '{{ cmctl_install_exe }}'
+  changed_when: false
+  register: cmctl_binary
+- when: not cmctl_binary.stat.exists
+  block:
+    - name: downloading {{ cmctl_url }}
+      become: true
+      become_user: root
+      get_url:
+        url: '{{ cmctl_url }}'
+        dest: '{{ cmctl_tmp_archive }}'
+        mode: 0644
+    - name: mkdir {{ cmctl_install_dir }}
+      become: true
+      become_user: root
+      file:
+        path: '{{ cmctl_install_dir }}'
+        mode: 0755
+        state: directory
+    - name: unarchive {{ cmctl_tmp_archive }}
+      become: true
+      become_user: root
+      unarchive:
+        remote_src: true
+        src: '{{ cmctl_tmp_archive }}'
+        dest: '{{ cmctl_install_dir }}'
+        creates: '{{ cmctl_install_exe }}'
+  always:
+    - name: rm {{ cmctl_tmp_archive }}
+      become: true
+      become_user: root
+      file:
+        path: '{{ cmctl_tmp_archive }}'
+        state: absent
+- name: linking {{ cmctl_link }} to {{ cmctl_install_exe }}
+  become: true
+  become_user: root
+  file:
+    src: '{{ cmctl_install_exe }}'
+    dest: '{{ cmctl_link }}'
+    state: link
+
+
+

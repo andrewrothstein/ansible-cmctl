@@ -1,0 +1,21 @@
+---
+# defaults file for cmctl
+cmctl_ver: 1.7.1
+cmctl_mirror: https://github.com/cert-manager/cert-manager/releases/download
+cmctl_os: linux
+cmctl_arch: amd64
+cmctl_parent_install_dir: /usr/local
+cmctl_checksums:
+  '1.7.1':
+    # https://github.com/cert-manager/cert-manager/releases/download/v1.7.1/cmctl-darwin-amd64.tar.gz
+    darwin-amd64: sha256:5c832555a8f8e9168ef5d761209c326fdbb1f762d5c810fb50e86fe10e9ddaa3
+    # https://github.com/cert-manager/cert-manager/releases/download/v1.7.1/cmctl-darwin-arm64.tar.gz
+    darwin-arm64: sha256:5b76cb57a2ba49086d5d3e630a1175125771e638fb9c233c1c2b38b16c18049e
+    # https://github.com/cert-manager/cert-manager/releases/download/v1.7.1/cmctl-linux-amd64.tar.gz
+    linux-amd64: sha256:a4dbcf7c6f933f724db026bd5a11d834df51533941e1be4bdd8166e85816b6fc
+    # https://github.com/cert-manager/cert-manager/releases/download/v1.7.1/cmctl-linux-arm64.tar.gz
+    linux-arm64: sha256:b7b3bec60f64bf2942b78be62b4689cbc6e8c4b75eaa38878a8aeeb7a5cb2f98
+    # https://github.com/cert-manager/cert-manager/releases/download/v1.7.1/cmctl-linux-ppc64le.tar.gz
+    linux-ppc64le: sha256:4372840e6cabde594e062f4fa59b9aa157be03105b7f207b7794f44c94cac4f6
+    # https://github.com/cert-manager/cert-manager/releases/download/v1.7.1/cmctl-windows-amd64.tar.gz
+    windows-amd64: sha256:661bc496e4a37fbfe2e911591db4ffb415525ee7c0f3b6572a0421e935a171b7

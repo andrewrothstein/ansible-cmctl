@@ -1,0 +1,10 @@
+---
+- hosts: all
+  roles:
+  - role: '{{ playbook_dir }}'
+  tasks:
+  - command: cmctl version --client
+    register: cmctl_test_output
+  - name: cmctl version --client
+    debug:
+      msg: '{{ cmctl_test_output.stdout }}'

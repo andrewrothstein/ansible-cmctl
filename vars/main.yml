@@ -1,0 +1,9 @@
+---
+# vars file for cmctl
+cmctl_platform: '{{ cmctl_os }}-{{ cmctl_arch }}'
+cmctl_url: '{{ cmctl_mirror }}/v{{ cmctl_ver }}/cmctl-{{ cmctl_platform }}.{{ cmctl_archive_type | default("tar.gz") }}'
+cmctl_tmp_archive: /tmp/cmctl-{{ cmctl_platform }}-{{ cmctl_ver }}.{{ cmctl_archive_type | default("tar.gz") }}
+cmctl_checksum: '{{ cmctl_checksums[cmctl_ver][cmctl_platform] }}'
+cmctl_install_dir: '{{ cmctl_parent_install_dir }}/cmctl-{{ cmctl_platform }}-{{ cmctl_ver }}'
+cmctl_install_exe: '{{ cmctl_install_dir }}/cmctl'
+cmctl_link: '{{ cmctl_parent_install_dir }}/bin/cmctl'
