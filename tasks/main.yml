@@ -53,6 +53,3 @@
     src: '{{ cmctl_install_exe }}'
     dest: '{{ cmctl_link }}'
     state: link
-
-
-
